@@ -1,0 +1,38 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    display: -webkit-box; /* 老版本语法: Safari,  iOS, Android browser, older WebKit browsers.  */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法： Chrome 21+ */
+
+    display: flex; /* 新版本语法： Opera 12.1, Firefox 22+ */
+
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    height: 100%;
+    width: 100% /* needed for Firefox */
+}
+
+#box1 {
+    background: red;
+    height: 100px;
+    width: 80px;
+}
+
+#box2 {
+    background: yellow;
+    width: 80px;
+    height: 100px;
+}
+
+#box3 {
+    background: green;
+    width: 80px;
+    align-self:stretch;
+}

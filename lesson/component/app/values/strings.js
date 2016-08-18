@@ -1,0 +1,52 @@
+exports.Strings = {
+    // app name
+    APP_NAME: 'App Name',
+
+    // guide and splash
+    JUMP_HOME: '开始体验',
+    JUMP_START_TEXT: '3s 点击跳转',
+    JUMP_MID_TEXT: 's 点击跳转',
+    JUMP_END_TEXT: '正在跳转',
+
+    // search
+    SEARCH_HINT: '搜索工种和设备',
+    CITY_HINT: '定位中',
+    CITY_FAIL: '定位失败',
+    CITY_REFRESH: '重新定位',
+    LOCATION: 'GPS定位',
+
+    backAgainToExit: "再按一次退出应用!!!",
+    tab_home: "首页",
+    tab_talk: "说说",
+    tab_post: "发布",
+    tab_friend: "工友圈",
+    tab_my: "我的",
+    tab_search: "搜索",
+    logout: "退出",
+    login: "登录",
+    favorites: "收藏",
+    feedback: "意见反馈",
+    settings: "设置",
+    waitingPost: "等待上传",
+    posting: "上传中...",
+    posted: "上传成功",
+    postFail: "上传失败",
+    delete: "刪除",
+    title: "标题",
+    content: "内容",
+    submit: "提交",
+    back: "返回",
+    like: "关注",
+    comment: "评论",
+    username: "用户名",
+    password: "密码",
+    category: "分类",
+    selectCat: "请选择分类",
+    tags: "标签",
+    update: "更新",
+    close: "关闭",
+    updateDescription: "更新说明:",
+    ignore: "忽略",
+    mandatoryUpdate: "有新版App可下载.",
+    optionalUpdate: "有新版App可下载,是否更新?"
+};

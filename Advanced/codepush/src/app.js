@@ -102,14 +102,14 @@ export default class codepush extends Component {
                         console.log("CodePush Installing update.");
                         self.setUpdateDlgActive(false);
                         break;
-                    case CodePush.SyncStatus.UPDATE_IGNORED: //5 
-                        console.log("CodePush ignore update.");
-                        break;
                     case CodePush.SyncStatus.CHECKING_FOR_UPDATE: //0
                         console.log("CodePush Checking for updates.");
                         break;
                     case CodePush.SyncStatus.UP_TO_DATE: //4
                         console.log("CodePush up to date.");
+                        break;
+                    case CodePush.SyncStatus.UPDATE_IGNORED: //5 
+                        console.log("CodePush ignore update.");
                         break;
                     case CodePush.SyncStatus.UPDATE_INSTALLED: //6
                         console.log("CodePush update installed.");
@@ -141,8 +141,7 @@ export default class codepush extends Component {
                     {this.state.updateDlgContent}
                 </Modal>
                 <Text style={styles.text}>
-                    Hi ASUS!
-                    2016.8.18 1749
+                    Hi ASUS!2016.8.19
                 </Text>
             </View>
         );
@@ -153,10 +152,10 @@ const styles = StyleSheet.create({
     // show text
     text: {
         flex: 1,
-        backgroundColor: 'green',
+        backgroundColor: 'blue',
         textAlign: 'center',
         textAlignVertical: 'center',
-        fontSize: 40,
+        fontSize: 30,
         color: 'white',
     },
 

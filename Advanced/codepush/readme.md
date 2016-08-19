@@ -11,7 +11,7 @@
         code-push release-react codepushdemo Android
         code-push release-react codepushdemo iOS
         code-push release-react codepushdemo android -d Staging --description "release note: test - 20160818" --mandatory false -t "1.0.0"
-        code-push release-react codepushdemo android -d Production --description "release note: test - 20160818" --mandatory false -t "1.0.0"
+        code-push release-react codepushdemo android -d Production --description "release note" -t "1.0.1"
    （2）其他发布
         (2.1) Promoting Updates：
               Once you’ve tested an update against a specific deployment (e.g. Staging), 

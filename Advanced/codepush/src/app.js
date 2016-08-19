@@ -83,11 +83,11 @@ export default class codepush extends Component {
                 optionalIgnoreButtonLabel: Strings.ignore,         // optional ignore label
                 title: Strings.update,                             // title
             },
-            installMode: CodePush.InstallMode.IMMEDIATE, // install mode
+            // install mode
+            installMode: CodePush.InstallMode.IMMEDIATE
         },
-            (status) => {
-                // all status des here https://github.com/Microsoft/react-native-code-push#syncstatus
-                console.log("CodePush  status = " + status);
+            (status) => { // all status des here https://github.com/Microsoft/react-native-code-push#syncstatus
+                console.log('CodePush status = ' + status);
                 switch (status) {
                     case CodePush.SyncStatus.DOWNLOADING_PACKAGE: //2
                         // Show "downloading" modal
@@ -102,20 +102,19 @@ export default class codepush extends Component {
                         console.log("CodePush Installing update.");
                         self.setUpdateDlgActive(false);
                         break;
-                    case codePush.SyncStatus.UPDATE_IGNORED: // (5) 
+                    case CodePush.SyncStatus.UPDATE_IGNORED: //5 
                         console.log("CodePush ignore update.");
-                        self.setUpdateDlgActive(false);
                         break;
-                    case codePush.SyncStatus.CHECKING_FOR_UPDATE: //0
+                    case CodePush.SyncStatus.CHECKING_FOR_UPDATE: //0
                         console.log("CodePush Checking for updates.");
                         break;
-                    case codePush.SyncStatus.UP_TO_DATE: //4
+                    case CodePush.SyncStatus.UP_TO_DATE: //4
                         console.log("CodePush up to date.");
                         break;
-                    case codePush.SyncStatus.UPDATE_INSTALLED: //6
+                    case CodePush.SyncStatus.UPDATE_INSTALLED: //6
                         console.log("CodePush update installed.");
                         break;
-                    case codePush.SyncStatus.UNKNOWN_ERROR: //-1
+                    case CodePush.SyncStatus.UNKNOWN_ERROR: //-1
                         console.log("CodePush unknown error.");
                         break;
                 }
@@ -127,7 +126,8 @@ export default class codepush extends Component {
                     updateTotal: totalBytes,
                 });
                 console.log("receivedBytes, totalBytes:" + receivedBytes + ", " + totalBytes);
-            });
+            }
+        );
     }
 
     render() {
@@ -141,7 +141,8 @@ export default class codepush extends Component {
                     {this.state.updateDlgContent}
                 </Modal>
                 <Text style={styles.text}>
-                    Hi ASUS!2016.08.18 1156 啦啦啦啦
+                    Hi ASUS!
+                    2016.8.18 1749
                 </Text>
             </View>
         );
@@ -149,19 +150,22 @@ export default class codepush extends Component {
 }
 
 const styles = StyleSheet.create({
-    dlgInnerContainer: {
-        backgroundColor: 'white',
-        padding: 5,
-        borderRadius: 10,
-        justifyContent: 'center',
-    },
+    // show text
     text: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'green',
         textAlign: 'center',
         textAlignVertical: 'center',
-        fontSize: 20,
+        fontSize: 40,
         color: 'white',
-    }
+    },
+
+    // update dialogue
+    updateView: {
+        height: 400,
+        width: 300,
+        backgroundColor: 'white',
+        alignSelf: 'center',
+    },
 
 });

@@ -2,41 +2,63 @@ import React, {  Component } from 'react';
 import {
     Text,
     View,
+    StyleSheet
 } from 'react-native';
 
-import {Utils} from './common/Utils';
+import Menu, {
+    MenuContext,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+} from 'react-native-popup-menu';
 
 export default class Root extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            theme: '',
+            dropdownSelection: '-- Choose --'
         };
     }
 
-    componentWillMount() {
-        this._getTheme();
-    }
-
-    _saveTheme() {
-        // save theme to storage
-        Utils.saveTheme('blue');
-    }
-
-    _getTheme() {
-        Utils.getTheme((name) => {
-            if (name !== this.state.theme) {
-                this.setState({ theme: name });
-            }
-        });
+    onMenuSelect(value) {
+        alert(`onMenuSelect value = : ${value}`)
     }
 
     render() {
         return (
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: 30, }} onPress={this._saveTheme.bind(this) }>Save Theme</Text>
-                <Text style={{ fontSize: 30, margin: 10 }} onPress={this._getTheme.bind(this) }>Theme {this.state.theme}</Text>
+            <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+                <MenuContext>
+                    <Menu onSelect={value => this.onMenuSelect(value) }>
+                        <MenuTrigger>
+                            <Text style={{ fontSize: 30 }}>--Choose--</Text>
+                        </MenuTrigger>
+                        <MenuOptions>
+                            <MenuOption value={1} text='One' />
+                            <MenuOption value={2}>
+                                <Text style={{ color: 'red', backgroundColor: 'green', fontSize: 20 }}>Two</Text>
+                            </MenuOption>
+                            <MenuOption value={3} disabled={true} text='Three' />
+                        </MenuOptions>
+                    </Menu>
+                </MenuContext>
+                <Text style={{ backgroundColor: 'green', flex: 1 }} >Hello world!</Text>
             </View>
-        )
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    dropdown: {
+        width: 300,
+        borderColor: '#999',
+        borderWidth: 1,
+        padding: 5
+    },
+    dropdownOptions: {
+        marginTop: 30,
+        borderColor: '#ccc',
+        borderWidth: 2,
+        width: 300,
+        height: 200
+    }
+});

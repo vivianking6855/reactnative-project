@@ -20,6 +20,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,11 +42,24 @@ public class UserNativeModule extends ReactContextBaseJavaModule implements Acti
     public Callback mCallback;
     private Promise mPromise;
 
+    // singleton pattern for UserNativeModule
+    private static UserNativeModule sUserNativeModule;
+    public static UserNativeModule getInstance(ReactApplicationContext reactContext) {
+        if (sUserNativeModule == null) {
+            sUserNativeModule = new UserNativeModule(reactContext);
+        }
+        return sUserNativeModule;
+    }
+
+    public ReactApplicationContext mReactContext;
+
     public UserNativeModule(ReactApplicationContext reactContext) {
         super(reactContext);
 
         // to get results from an activity you started with startActivityForResult.
         reactContext.addActivityEventListener(this);
+
+        mReactContext = reactContext;
     }
 
     @Override
@@ -96,7 +110,7 @@ public class UserNativeModule extends ReactContextBaseJavaModule implements Acti
      * @param activity
      */
     public void startTestActivity(final ReadableMap map, Activity activity) {
-        Intent it = new Intent(getReactApplicationContext(), TestActivity.class);
+        Intent it = new Intent(mReactContext, TestActivity.class);
         it.putExtra("status", map.getInt("status"));
         it.putExtra("text", map.getString("text"));
         activity.startActivityForResult(it, ACTIVITY_TEST_ID);
@@ -132,6 +146,12 @@ public class UserNativeModule extends ReactContextBaseJavaModule implements Acti
             Log.d(TAG, "getPackageVersion:", ex);
             promise.reject(ex);
         }
+    }
+
+    public static void sendEvent(String eventName, WritableMap params) {
+        sUserNativeModule.mReactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, params);
     }
 
 }

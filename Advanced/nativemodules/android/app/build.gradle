@@ -90,8 +90,8 @@ android {
         applicationId "com.nativemodules"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 160923
+        versionName "1.0.160923"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

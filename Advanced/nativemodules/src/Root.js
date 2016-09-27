@@ -9,11 +9,24 @@ import {
   Text,
   View,
   ToastAndroid,
+  DeviceEventEmitter
 } from 'react-native';
 
 import UserNativeModule from './common/UserNativeModule';
 
 export default class Root extends Component {
+
+  componentWillMount() {
+    DeviceEventEmitter.addListener('TEST', this.handleTest.bind(this));
+  }
+
+  componentWillUnmount() {
+    DeviceEventEmitter.removeListener('TEST');
+  }
+
+  handleTest(param) {
+    ToastAndroid.show('JS rev event: ' + JSON.stringify(param), ToastAndroid.SHORT);
+  }
 
   onPress(type = 1) {
     switch (type) {
@@ -23,17 +36,17 @@ export default class Root extends Component {
       case 2:// Activity
         const map = {
           'status': 0,
-          'text': 'text from RN',
+          'text': 'ASUS from RN',
         };
         UserNativeModule.startActivity(UserNativeModule.ACTIVITY_TEST, map, (result) => {
-          ToastAndroid.show('android : ' + result, ToastAndroid.SHORT);
+          ToastAndroid.show(result, ToastAndroid.SHORT);
         });
         break;
       case 3:// android app Version
         UserNativeModule.getPackageVersion()
           .then(result => {
-            let version = JSON.stringify(version);
-            ToastAndroid.show('Version : ' + version, ToastAndroid.SHORT);
+            let version = JSON.stringify(result);
+            ToastAndroid.show('Version : ' + version, ToastAndroid.LONG);
           })
           .catch(result => {
             ToastAndroid.show('exception : ' + result);

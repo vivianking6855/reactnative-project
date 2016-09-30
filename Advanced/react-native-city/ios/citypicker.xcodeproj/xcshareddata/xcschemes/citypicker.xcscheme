@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "city.app"
-               BlueprintName = "city"
-               ReferencedContainer = "container:city.xcodeproj">
+               BuildableName = "citypicker.app"
+               BlueprintName = "citypicker"
+               ReferencedContainer = "container:citypicker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "cityTests.xctest"
-               BlueprintName = "cityTests"
-               ReferencedContainer = "container:city.xcodeproj">
+               BuildableName = "citypickerTests.xctest"
+               BlueprintName = "citypickerTests"
+               ReferencedContainer = "container:citypicker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "cityTests.xctest"
-               BlueprintName = "cityTests"
-               ReferencedContainer = "container:city.xcodeproj">
+               BuildableName = "citypickerTests.xctest"
+               BlueprintName = "citypickerTests"
+               ReferencedContainer = "container:citypicker.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "city.app"
-            BlueprintName = "city"
-            ReferencedContainer = "container:city.xcodeproj">
+            BuildableName = "citypicker.app"
+            BlueprintName = "citypicker"
+            ReferencedContainer = "container:citypicker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "city.app"
-            BlueprintName = "city"
-            ReferencedContainer = "container:city.xcodeproj">
+            BuildableName = "citypicker.app"
+            BlueprintName = "citypicker"
+            ReferencedContainer = "container:citypicker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "city.app"
-            BlueprintName = "city"
-            ReferencedContainer = "container:city.xcodeproj">
+            BuildableName = "citypicker.app"
+            BlueprintName = "citypicker"
+            ReferencedContainer = "container:citypicker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -26,9 +26,22 @@ exports.colors = {
     // border color
     border: '#e6e6e6',
 
+    // bottom bar 
+    bottombarSplit: '#e4e4e4',
+
     // splash and guide page
     splashCountText: 'white',
     guideJumpText: '#375790',
     guideDot: '#c1c0b7',
     guideActiveDot: '#375790',
+
+    // tag colors
+    supplydeep: '#0fabc4',// deep green
+    supplylight: '#31ae52',// light green
+    demanddeep: '#375790',// deep blue 
+    demandlight: '#81d6cf',// light blue 
+
+    // city 
+    cityBK: '#f3f3f3',
+    cityText: '#5d5d5d',
 }

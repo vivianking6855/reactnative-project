@@ -10,7 +10,6 @@ import {
   ListView
 } from 'react-native';
 
-import merge from 'merge';
 import SectionHeader from './SectionHeader';
 import SectionList from './SectionList';
 import CellWrapper from './CellWrapper';
@@ -31,21 +30,20 @@ export default class SelectableSectionsListView extends Component {
       offsetY: 0
     };
 
-    this.renderFooter = this.renderFooter.bind(this);
-    this.renderHeader = this.renderHeader.bind(this);
-    this.renderRow = this.renderRow.bind(this);
-    this.renderSectionHeader = this.renderSectionHeader.bind(this);
+    // this.renderFooter = this.renderFooter.bind(this);
+    // this.renderHeader = this.renderHeader.bind(this);
+    // this.renderRow = this.renderRow.bind(this);
+    // this.renderSectionHeader = this.renderSectionHeader.bind(this);
 
-    this.onScroll = this.onScroll.bind(this);
-    this.onScrollAnimationEnd = this.onScrollAnimationEnd.bind(this);
-    this.scrollToSection = this.scrollToSection.bind(this);
+    // this.onScroll = this.onScroll.bind(this);
+    // this.onScrollAnimationEnd = this.onScrollAnimationEnd.bind(this);
 
     // used for dynamic scrolling
     // always the first cell of a section keyed by section id
     this.cellTagMap = {};
     this.sectionTagMap = {};
-    this.updateTagInCellMap = this.updateTagInCellMap.bind(this);
-    this.updateTagInSectionMap = this.updateTagInSectionMap.bind(this);
+    //this.updateTagInCellMap = this.updateTagInCellMap.bind(this);
+    //this.updateTagInSectionMap = this.updateTagInSectionMap.bind(this);
   }
 
   componentWillMount() {
@@ -95,7 +93,7 @@ export default class SelectableSectionsListView extends Component {
     this.cellTagMap[section] = tag;
   }
 
-  scrollToSection(section) {
+  scrollToSection = (section) => {
     let y = 0;
     let headerHeight = this.props.headerHeight || 0;
     y += headerHeight;
@@ -116,19 +114,23 @@ export default class SelectableSectionsListView extends Component {
       const maxY = this.totalHeight - this.containerHeight + headerHeight;
       y = y > maxY ? maxY : y;
 
-      this.refs.listview.scrollTo({ x: 0, y, animated: true });
+
+      this.refs.sglistview.getScrollResponder().scrollResponderScrollTo({ x: 0, y, animated: true });
+      //this.refs.sglistview..getNativeListView.scrollTo({ x: 0, y, animated: true });
+
     } else {
       // this breaks, if not all of the listview is pre-rendered!
       UIManager.measure(this.cellTagMap[section], (x, y, w, h) => {
         y = y - this.props.sectionHeaderHeight;
-        this.refs.listview.scrollTo({ x: 0, y, animated: true });
+        this.refs.sglistview.getScrollResponder().scrollResponderScrollTo({ x: 0, y, animated: true });
+        //this.refs.sglistview.getNativeListView.scrollTo({ x: 0, y, animated: true });
       });
     }
 
     this.props.onScrollToSection && this.props.onScrollToSection(section);
   }
 
-  renderSectionHeader(sectionData, sectionId) {
+  renderSectionHeader = (sectionData, sectionId) => {
     const updateTag = this.props.useDynamicHeights ?
       this.updateTagInSectionMap :
       null;
@@ -148,17 +150,17 @@ export default class SelectableSectionsListView extends Component {
     );
   }
 
-  renderFooter() {
+  renderFooter = () => {
     const Footer = this.props.footer;
     return <Footer />;
   }
 
-  renderHeader() {
+  renderHeader = () => {
     const Header = this.props.header;
     return <Header />;
   }
 
-  renderRow(item, sectionId, index) {
+  renderRow = (item, sectionId, index) => {
     const CellComponent = this.props.cell;
     index = parseInt(index, 10);
 
@@ -182,7 +184,7 @@ export default class SelectableSectionsListView extends Component {
       <CellComponent {...props} {...this.props.cellProps} />;
   }
 
-  onScroll(e) {
+  onScroll = (e) => {
     const offsetY = e.nativeEvent.contentOffset.y;
     if (this.props.updateScrollState) {
       this.setState({
@@ -193,7 +195,7 @@ export default class SelectableSectionsListView extends Component {
     this.props.onScroll && this.props.onScroll(e);
   }
 
-  onScrollAnimationEnd(e) {
+  onScrollAnimationEnd = (e) => {
     if (this.props.updateScrollState) {
       this.setState({
         offsetY: e.nativeEvent.contentOffset.y
@@ -234,23 +236,24 @@ export default class SelectableSectionsListView extends Component {
       this.renderHeader :
       this.props.renderHeader;
 
-    const props = merge({}, this.props, {
-      onScroll: this.onScroll,
-      onScrollAnimationEnd: this.onScrollAnimationEnd,
-      renderFooter,
-      renderHeader,
-      renderRow: this.renderRow,
-      renderSectionHeader
-    });
-
-    props.style = void 0;
-
     return (
       <View ref="view" style={[styles.container, this.props.style]}>
         <SGListView
-          ref="listview"
+          ref={'sglistview'}
           dataSource = {dataSource}
-          {...props}
+          onScroll = {this.onScroll}
+          onScrollAnimationEnd= {this.onScrollAnimationEnd}
+          renderFooter = {renderFooter}
+          renderHeader = {renderHeader}
+          renderRow = {this.renderRow}
+          renderSectionHeader ={renderSectionHeader}
+          initialListSize={200}
+          stickyHeaderIndices={[0]} // (ios) which children get docked to the top of the screen 
+          onEndReachedThreshold={1}
+          scrollRenderAheadDistance={1} //How early to start rendering rows before they come on screen, in pixels.
+          pageSize={1}
+
+          {...this.props}
           />
         {sectionList}
       </View>
